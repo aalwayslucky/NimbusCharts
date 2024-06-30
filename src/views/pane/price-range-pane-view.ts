@@ -138,7 +138,11 @@ export class PriceRangePaneView extends LineToolPaneView {
 					// labelOptionsPermanent.value = String(priceScale.coordinateToPrice(point1.y, firstValue));
 					// const price = priceScale.coordinateToPrice(point1.y, firstValue);
 					// labelOptionsPermanent.value = String(priceScale.formatPrice(price, firstValue));
-					labelOptionsPermanent.value = '+' + String(Number(priceScale.formatPrice(priceScale.coordinateToPrice(point1.y, firstValue), firstValue)) - Number(priceScale.formatPrice(priceScale.coordinateToPrice(point0.y, firstValue), firstValue)));
+					const price1 = Number(priceScale.formatPrice(priceScale.coordinateToPrice(point1.y, firstValue), firstValue));
+					const price0 = Number(priceScale.formatPrice(priceScale.coordinateToPrice(point0.y, firstValue), firstValue));
+					labelOptionsPermanent.value = ((price1 - price0) / price0 * 100).toFixed(2) + '%';
+
+					// labelOptionsPermanent.value = '+' + String(Number(priceScale.formatPrice(priceScale.coordinateToPrice(point1.y, firstValue), firstValue)) - Number(priceScale.formatPrice(priceScale.coordinateToPrice(point0.y, firstValue), firstValue)));
 				}
 			}
 
@@ -169,7 +173,7 @@ export class PriceRangePaneView extends LineToolPaneView {
 			labelOptionsPermanent.box = { ...labelOptionsPermanent.box, padding: { y: textHalfSizePermanent, x: hoirzontalPaddingPermanent } };
 
 			// hardcode font settings
-			labelOptionsPermanent.font.size = 28;
+			labelOptionsPermanent.font.size = 18;
 			// make color whatever the settings color is
 			labelOptionsPermanent.font.color = options.text.font.color;
 			labelOptionsPermanent.font.bold = true;

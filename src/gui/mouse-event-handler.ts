@@ -513,10 +513,12 @@ export class MouseEventHandler implements IDestroyable {
 
 		if (this._clickTimeoutId && this._clickCount > 1) {
 			// check that both clicks are near enough
-			const { manhattanDistance } = this._touchMouseMoveWithDownInfo(getPosition(mouseUpEvent), this._clickPosition);
-			if (manhattanDistance < Constants.DoubleClickManhattanDistance && !this._cancelClick) {
-				this._processMouseEvent(compatEvent, this._handler.mouseDoubleClickEvent);
-			}
+			// const { manhattanDistance } = this._touchMouseMoveWithDownInfo(getPosition(mouseUpEvent), this._clickPosition);
+			// if (manhattanDistance < Constants.DoubleClickManhattanDistance && !this._cancelClick) {
+			// 	this._processMouseEvent(compatEvent, this._handler.mouseDoubleClickEvent);
+			// }
+			this._processMouseEvent(compatEvent, this._handler.mouseClickEvent);
+
 			this._resetClickTimeout();
 		} else {
 			if (!this._cancelClick) {
